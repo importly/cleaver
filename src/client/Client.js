@@ -1,8 +1,8 @@
-const { Collection, Client } = require('discord.js')
+const { Collection, Client } = require('discord.js');
 
 class Cleaver extends Client {
     constructor() {
-        super()
+        super();
 
         this.commands = new Collection();
     }
@@ -16,9 +16,9 @@ class Cleaver extends Client {
         this.commandHandler();
 
         this.on('ready', () => {
-            require('../events/ReadyEvent.js')
-        })
+            require('../events/ReadyEvent.js');
+        });
     }
 }
 
-module.exports = { Cleaver }
+module.exports = { Cleaver };
