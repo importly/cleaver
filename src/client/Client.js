@@ -9,7 +9,9 @@ class Cleaver extends Client {
     }
 
     commandHandler() {
-        console.log("commands");
+        this.on("message",(message)=>{
+            console.log(message.content);
+        });
     }
 
     initBot(token) {
