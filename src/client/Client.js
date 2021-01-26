@@ -1,4 +1,5 @@
 const { Collection, Client } = require('discord.js');
+let ready_event = require("../events/ReadyEvent");
 
 class Cleaver extends Client {
     constructor() {
@@ -6,18 +7,20 @@ class Cleaver extends Client {
 
         this.commands = new Collection();
     }
-    //bruj javascript is so bad theres no error checking
 
     commandHandler() {
-
+        console.log("commands");
     }
 
-    initBot() {
+    initBot(token) {
         this.commandHandler();
 
-        this.on('ready', () => {
-            require('../events/ReadyEvent.js');
+        this.on('ready', ()=>{
+            ready_event(this);
         });
+
+        this.login(token);
+        console.log("done");
     }
 }
 
