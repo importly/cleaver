@@ -1,6 +1,5 @@
-require('dotenv').config();
-const { Cleaver } = require('./src/client/Client');
+const { Cleaver } = require("./client/Client");
 
-const cleaver_bot = new Cleaver();
+const client = new Cleaver();
 
-cleaver_bot.initBot(process.env.TOKEN);
+client.initBot();
