@@ -5,7 +5,12 @@ class BaseCommand {
     this.catergory = catergory;
     this.aliases = aliases;
   }
-
+  /**
+   *
+   * @param {Client} client
+   * @param {Message} message
+   * @param {String[]} args
+   */
   async execute() {}
 }
 

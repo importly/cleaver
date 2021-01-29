@@ -6,12 +6,6 @@ class PingCommand extends BaseCommand {
   constructor() {
     super("ping", "Measures latency", "misc", ["latency"]);
   }
-  /**
-   *
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   async execute(client, message, args) {
     let date = Date.now();
     return message.channel.send("Testing Latency").then((message) => {
@@ -21,5 +15,4 @@ class PingCommand extends BaseCommand {
     });
   }
 }
-
 module.exports = PingCommand;
