@@ -1,7 +1,7 @@
 require("dotenv").config();
 const { Collection, Client } = require("discord.js");
 
-const prefix = "?";
+const prefix = process.env.P;
 
 class Cleaver extends Client {
   constructor() {
