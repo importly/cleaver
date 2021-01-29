@@ -2,10 +2,16 @@ const { MessageEmbed, Message } = require("discord.js");
 const Client = require("../../client/Client");
 const BaseCommand = require("../../client/BaseCommand");
 
-class ping extends BaseCommand {
+class PingCommand extends BaseCommand {
   constructor() {
     super("ping", "Measures latency", "misc", ["latency"]);
   }
+  /**
+   *
+   * @param {Client} client
+   * @param {Message} message
+   * @param {String[]} args
+   */
   async execute(client, message, args) {
     let date = Date.now();
     return message.channel.send("Testing Latency").then((message) => {
@@ -16,4 +22,4 @@ class ping extends BaseCommand {
   }
 }
 
-module.exports = ping;
+module.exports = PingCommand;
