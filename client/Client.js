@@ -20,12 +20,11 @@ class Cleaver extends Client {
     this.fs.readdirSync("./commands").map((directory) => {
       this.fs.readdirSync(`./commands/${directory}/`).map((file) => {
         let CMD = require(`../commands/${directory}/${file}`);
-        let madeCMD = new CMD();
-        this.commands.set(madeCMD.name, madeCMD);
-        madeCMD.aliases.forEach((e) => {
-          this.commands.set(e, madeCMD);
+        this.commands.set(CMD.name, CMD);
+        CMD.aliases.forEach((e) => {
+          this.commands.set(e.name, CMD);
         });
-        console.log(`Command ${madeCMD.name} loaded in ${directory}`);
+        console.log(`Command ${CMD.name} loaded in ${directory}`);
       });
     });
   }
@@ -46,13 +45,14 @@ class Cleaver extends Client {
       )
         return;
 
-      const args = message.content.slice(prefix.length).trim().split(/ +/);
+      const args = message.content.slice(prefix.length).trim().split(",");
       const lower = args.shift().toLowerCase();
 
       let commandFiles;
       //Navigate the collection filled with commands, get them, and run the run function in them
       if (this.commands.has(lower)) {
         commandFiles = this.commands.get(lower);
+        console.log(commandFiles);
         commandFiles.execute(this, message, args);
       }
     });

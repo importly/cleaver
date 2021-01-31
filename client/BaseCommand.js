@@ -1,4 +1,8 @@
 class BaseCommand {
+  static name = "";
+  static description = "";
+  static catergory = "";
+  static aliases = [];
   constructor(name, description = "", catergory = "misc", aliases = []) {
     this.name = name;
     this.description = description;
@@ -11,7 +15,7 @@ class BaseCommand {
    * @param {Message} message
    * @param {String[]} args
    */
-  async execute() {}
+  static async execute() { }
 }
 
 module.exports = BaseCommand;

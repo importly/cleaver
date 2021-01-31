@@ -1,11 +1,11 @@
 const { MessageEmbed, Message } = require("discord.js");
 const Client = require("../../client/Client");
 const BaseCommand = require("../../client/BaseCommand");
-const { } = require('../.')
+const fs = require("fs");
 
-class HelpCommand extends BaseCommand {
+class help extends BaseCommand {
   constructor() {
-    super("ping", "Measures latency", "misc", ["latency"]);
+    super("help", "This command that helps you", "info", ["latency"]);
   }
     /**
    *
@@ -14,8 +14,18 @@ class HelpCommand extends BaseCommand {
    * @param {String[]} args
    */
 
-  async execute(client, message, args) {
-    //ok so go to Client.js
+  static async execute(client, message, args) {
+    let sender = new MessageEmbed();
+    sender.setTitle("The Help Board");
+    fs.readdirSync("./commands").map((directory) => {
+      let command = [];
+      fs.readdirSync(`./commands/${directory}/`).map((file) => {
+        let CMD = require(`../../commands/${directory}/${file}`);
+        command.push(CMD.name);
+      });
+      sender.addField(directory,command);
+    });
+    message.channel.send(sender);
   }
 }
-module.exports = HelpCommand;
+module.exports = help;
