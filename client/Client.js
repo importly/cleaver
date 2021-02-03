@@ -10,6 +10,7 @@ class Cleaver extends Client {
     //Create collections
     this.commands = new Collection();
     this.token = process.env.TOKEN;
+    this.sniper = new Collection();
 
     //Import modules
     this.fs = require("fs");
@@ -29,8 +30,20 @@ class Cleaver extends Client {
     });
   }
 
+  deletionHandler(){
+    this.on("messageDelete", (message) => {
+      this.sniper.set(message.channel.id, {
+        content:message.content,
+        author:message.author.username,
+        image:message.attachments.first() ? message.attachments.first().proxyURL : null,
+      });
+    });
+    
+  }
+
   initBot() {
     this.commandHandler();
+    this.deletionHandler();
 
     this.on("ready", async () => {
       require("../events/ready")(this);

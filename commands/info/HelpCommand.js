@@ -5,7 +5,7 @@ const fs = require("fs");
 
 class help extends BaseCommand {
   constructor() {
-    super("help", "This command that helps you", "info", ["latency"]);
+    super("help", "This command that helps you", "info", ["helpme"]);
   }
     /**
    *
